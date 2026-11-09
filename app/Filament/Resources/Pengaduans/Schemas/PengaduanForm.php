@@ -3,9 +3,10 @@
 namespace App\Filament\Resources\Pengaduans\Schemas;
 
 use Filament\Schemas\Schema;
-use Filament\Forms\Components\Select;   
+use Filament\Forms\Components\Select;    
 use Filament\Forms\Components\TextInput;  
-use Filament\Forms\Components\Textarea;   
+use Filament\Forms\Components\Textarea;    
+use Filament\Forms\Components\Hidden;
 
 class PengaduanForm
 {
@@ -22,6 +23,17 @@ class PengaduanForm
                     ->required(),
                 Textarea::make('deskripsi')
                     ->required()
+                    ->columnSpanFull(),
+                Select::make('status')
+                    ->options([
+                        'menunggu' => 'Menunggu',
+                        'proses' => 'Proses',
+                        'selesai' => 'Selesai',
+                    ])
+                    ->default('menunggu')
+                    ->required(),
+                Textarea::make('feedback')
+                    ->label('Feedback / Tanggapan')
                     ->columnSpanFull(),
             ]);
     }
